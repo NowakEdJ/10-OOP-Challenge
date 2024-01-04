@@ -1,7 +1,7 @@
 
 const inquirer = require('inquirer');
 const fs = require('fs');
-const { Circle, Square, Triangle } = require('./lib/shapes');
+const { Circle, Square, Triangle } = require('./lib/shapes.js');
 
 // User input questions
 const questions = [
@@ -33,14 +33,14 @@ function generateSVG(shape, shapeColor, initials, textColor) {
 	let shapeObject;
 
 	if (shape === 'Circle') {
-		shapeObject = new Circle(shapeColor);
+			shapeObject = new Circle(shapeColor);
 	} else if (shape === 'Square') {
-		shapeObject = new Square(shapeColor);
+			shapeObject = new Square(shapeColor);
 	} else if (shape === 'Triangle') {
-		shapeObject = new Triangle(shapeColor);
+			shapeObject = new Triangle(shapeColor);
 	}
 
-	const svgShape = shapeObject.getSVG();
+	const svgShape = shapeObject.render();  // Corrected this line
 	const svgInitials = `<text x="50%" y="55%" fill="${textColor}" font-size="20" text-anchor="middle">${initials}</text>`;
 	return `<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">${svgShape}${svgInitials}</svg>`;
 }
